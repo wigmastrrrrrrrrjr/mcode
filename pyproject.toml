@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcode"
+version = "0.1.0"
+description = "mcode — terminal coding IDE powered by the mrouter API"
+requires-python = ">=3.10"
+dependencies = ["textual>=0.60", "httpx>=0.27"]
+
+[project.scripts]
+mcode = "mcode.app:main"
+
+[tool.setuptools]
+packages = ["mcode"]
