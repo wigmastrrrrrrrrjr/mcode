@@ -20,12 +20,12 @@ from mcode.storage import (ensure_dirs, load_config, save_config,
 FG = "255"
 DIM = "245"
 DIMMER = "240"
-CYAN = "81"
-BLUE = "75"
+CYAN = "114"
+BLUE = "114"
 GREEN = "114"
 RED = "203"
 PINK = "176"
-MAG = ["53", "135", "176", "213", "176", "135"]  # shimmer cycle
+MAG = ["22", "28", "34", "71", "34", "28"]  # shimmer cycle (green)
 
 
 def ok(msg):
@@ -815,8 +815,8 @@ class MCodeApp(ui.App):
         text, col = self.input.view(self.cols - 6)
         content = " ❯ " + text
         pad = self.cols - ui.visible_width(content) - 1
-        bar = ui.style(content, fg="15", bg="24", bold=True) + \
-            ui.style(" " * max(0, pad), bg="24")
+        bar = ui.style(content, fg="15", bg="22", bold=True) + \
+            ui.style(" " * max(0, pad), bg="22")
         lb.add(bar, tag="input")
         self._cursor_cache = (3 + col)
         return lb.line()
@@ -856,7 +856,7 @@ class MCodeApp(ui.App):
             label = cur + mark + " " + m["id"] + \
                 ui.style(f"  ({m.get('provider')})", fg=DIMMER)
             if i == ov["idx"]:
-                label = ui.style(label, fg="16", bg="117")
+                label = ui.style(label, fg="16", bg="114")
             box_lines.append((label, [(0, 70, "model:" + m["id"])]))
         if not box_lines:
             box_lines.append((ui.style("  loading models…", fg=DIM), []))
@@ -881,7 +881,7 @@ class MCodeApp(ui.App):
                 ui.style(f"  · {s['messages']} msgs · {s['model'][:24]} · {dt}",
                          fg=DIMMER)
             if i == ov["idx"]:
-                label = ui.style(label, fg="16", bg="117")
+                label = ui.style(label, fg="16", bg="114")
             out.append((label, [(0, self.cols, "session:" + s["id"])]))
         return out
 
@@ -937,7 +937,7 @@ class MCodeApp(ui.App):
             f = ov["fields"][i]
             focus = ov["focus"] == i
             text = f.text if i != 2 else ("*" * len(f.text))
-            cursor = ui.style(" ", bg="117") if focus else ""
+            cursor = ui.style(" ", bg="114") if focus else ""
             lines.append(("  " + ui.style(f"{labels[i]:<9}", fg=DIMMER) +
                           ui.style(text, fg=FG, bg="236" if not focus else "236") +
                           cursor, []))
@@ -976,7 +976,7 @@ class MCodeApp(ui.App):
             f = ov["fields"][i]
             focus = ov["focus"] == i
             text = f.text if i != 2 else ("*" * len(f.text))
-            cursor = ui.style(" ", bg="117") if focus else ""
+            cursor = ui.style(" ", bg="114") if focus else ""
             tag = f"focus:{i}"
             lines.append(("  " + ui.style(f"{labels[i]:<11}", fg=DIMMER) +
                           ui.style(text, fg=FG, bg="236") + cursor,
